@@ -2,6 +2,8 @@ version: '2'
 services:
   nginx:
     image: shippingdocker/nginx:latest
+    hostname: nginx
+    container_name: nginx
     ports:
      - "80:80"
     volumes:
@@ -10,16 +12,22 @@ services:
      - appnet
   php:
     image: shippingdocker/php:latest
+    hostname: php
+    container_name: php
     volumes:
      - ./application:/var/www/html
     networks:
      - appnet
   redis:
     image: redis:alpine
+    hostname: redis
+    container_name: redis
     networks:
      - appnet
   db:
     image: mysql:5.7
+    hostname: mysql
+    container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: homestead
